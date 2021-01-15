@@ -7,13 +7,15 @@ phoneOn = () => {
         phone.setAttribute("class", "offscreen");
         document.getElementById("lockscreendetails").style.display = "none";
         document.getElementById("notification-bar").style.display = "none";
+        document.getElementById("icon").style.display = "none";
         document.getElementById("butcontainer").style.top = "94.5%"
         phoneStatus = "of"
     } else {
         phone.setAttribute("class", "lockscreen");
         document.getElementById("lockscreendetails").style.display = "flex";
         document.getElementById("notification-bar").style.display = "flex";
-        document.getElementById("butcontainer").style.top = "82.9%"
+        document.getElementById("icon").style.display = "none";
+        document.getElementById("butcontainer").style.top = "82.4%"
         phoneStatus = "on"
     }
 }
@@ -22,7 +24,8 @@ homeActive = () => {
     if (phoneStatus == "on") {
         phone.setAttribute("class", "homescreen");
         document.getElementById("lockscreendetails").style.display = "none";
-        document.getElementById("butcontainer").style.top = "91.5%"
+        document.getElementById("icon").style.display = "flex";
+        document.getElementById("butcontainer").style.top = "80%"
         homeStatus = true;
     }
 }
