@@ -6,12 +6,14 @@ phoneOn = () => {
     if (phoneStatus == !undefined || phoneStatus === "on") {
         phone.setAttribute("class", "offscreen");
         document.getElementById("lockscreendetails").style.display = "none";
+        document.getElementById("notification-bar").style.display = "none";
         document.getElementById("butcontainer").style.top = "94.5%"
         phoneStatus = "of"
     } else {
         phone.setAttribute("class", "lockscreen");
         document.getElementById("lockscreendetails").style.display = "flex";
-        document.getElementById("butcontainer").style.top = "85.6%"
+        document.getElementById("notification-bar").style.display = "flex";
+        document.getElementById("butcontainer").style.top = "82.9%"
         phoneStatus = "on"
     }
 }
@@ -20,7 +22,7 @@ homeActive = () => {
     if (phoneStatus == "on") {
         phone.setAttribute("class", "homescreen");
         document.getElementById("lockscreendetails").style.display = "none";
-        document.getElementById("butcontainer").style.top = "94.5%"
+        document.getElementById("butcontainer").style.top = "91.5%"
         homeStatus = true;
     }
 }
@@ -29,8 +31,15 @@ setInterval(() => {
     let timeNow = new Date();
     let timeHours = timeNow.getHours();
     let timeMins = timeNow.getMinutes();
-    let currentTime = timeHours + ':' + timeMins;
+    let minLen = timeMins.toString().length;
+    let currentTime;
+    if (minLen == "1") {
+        currentTime = timeHours + ':0' + timeMins; 
+    } else{
+        currentTime = timeHours + ':' + timeMins;
+    }
     document.getElementById("time").innerHTML = currentTime;
+    document.querySelector("#notification-time").innerHTML = currentTime;
 }, 1000)
 // this function gets the date
 myDate = () => {
@@ -106,6 +115,5 @@ myDate = () => {
     let week = realDay;
     document.querySelector("#date span:nth-child(1)").innerHTML = monthDay;
     document.querySelector("#date span:nth-child(2)").innerHTML = week;
-    // document.getElementById('screen').innerHTML = monthDay;
 }
 myDate();

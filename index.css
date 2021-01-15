@@ -16,6 +16,25 @@
     background:linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("img/lock.png");
     background-size: cover;
 }
+#notification-bar{
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    display: none;
+}
+#notification-left{
+    font-size: 14px;
+    margin-left: 8px;
+}
+#notification-left i{
+    margin-right: 6px;
+}
+#notification-right{
+    /* color: red; */
+    font-size: 14px;
+    margin-right: 5px;
+}
 #lockscreendetails{
     width: 100%;
     height: 55px;
@@ -24,7 +43,7 @@
     border: 1px solid rgb(255, 255, 255, 0.3);
     /* opacity: 0.2; */
     position: relative;
-    top: 83%;
+    top: 80%;
     display: none;
     justify-content: space-between;
     color: white;
@@ -110,18 +129,18 @@
 #backbut{
     height: 15px;
     width: 15px;
-    border: 1px solid white;
+    border: 1px solid red;
     border-radius: 50px 20px 20px 50px;
 }
 #homebut{
     height: 15px;
     width: 15px;
-    border: 1px solid white;
+    border: 1px solid red;
     border-radius: 20px;
 }
 #minbut{
     height: 15px;
     width: 15px;
-    border: 1px solid white;
+    border: 1px solid red;
     border-radius: 5px;
 }
