@@ -30,9 +30,89 @@
                     <i style="font-size: 9px;" class="fas fa-signal"></i>
                     <sub><span style="font-size: 7px;">2</span></sub>
                     <i class="fas fa-battery"></i>
-                    <!-- <i class="fas fa-phone-alt"></i> -->
+                    <!-- <i></i> -->
                     <span id="notification-time" style="margin-left: 06px;"></span>
                 </span>
+            </div>
+            <div id="dialpad">
+                <div id="phone-contact">
+                    <div id="phonetab"></div>
+                    <div id="contacttab"></div>
+                </div>
+                <div id="screen">
+
+                </div>
+                <div id="dialbut">
+                    <div id="butr1">
+                        <button class="buttontext1">1</button>
+                        <button class="button-double">
+                            <span class="buttontext1">2</span>
+                            <span class="buttontext2">ABC</span>
+                        </button>
+                        <button class="button-double">
+                            <span class="buttontext1">3</span>
+                            <span class="buttontext2">DEF</span>
+                        </button>
+                    </div>
+                    <div id="butr2">
+                        <button class="button-double">
+                            <span class="buttontext1">4</span>
+                            <span class="buttontext2">GHI</span>
+                        </button>
+                        <button class="button-double">
+                            <span class="buttontext1">5</span>
+                            <span class="buttontext2">JKL</span>
+                        </button>
+                        <button class="button-double">
+                            <span class="buttontext1">6</span>
+                            <span class="buttontext2">MNO</span>
+                        </button>
+                    </div>
+                    <div id="butr3">
+                        <button class="button-double">
+                            <span class="buttontext1">7</span>
+                            <span class="buttontext2">PQRS</span>
+                        </button>
+                        <button class="button-double">
+                            <span class="buttontext1">8</span>
+                            <span class="buttontext2">TUV</span>
+                        </button>
+                        <button class="button-double">
+                            <span class="buttontext1">9</span>
+                            <span class="buttontext2">WXYZ</span>
+                        </button>
+                    </div>
+                    <div id="butr4">
+                        <button class="buttontext1">*</button>
+                        <button class="button-double">
+                            <span class="buttontext1">0</span>
+                            <span class="buttontext2">+</span>
+                        </button>
+                        <button class="buttontext1">⋕</button>
+                    </div>
+                </div>
+                <div id="dialpad-network">
+                    <div style="width: 20%;" class="net-icon">
+                        <i class="far fa-star"></i>
+                        <span>Favorites</span>
+                    </div>
+                    <div id="network">
+                        <div id="network1">
+                            <i class="fas fa-phone-alt"></i>
+                            <sup>1</sup>
+                            <span>MTN - NG</span>
+                        </div>
+                        <div id="network2">
+                            <i class="fas fa-phone-alt"></i>
+                            <sup>2</sup>
+                            <span>Etisalat</span>
+                        </div>
+                    </div>
+                    <div style="width: 20%;" class="net-icon">
+                        <i class="fas fa-ellipsis-h"></i>
+                        <span>More</span>
+                    </div>
+                </div>
             </div>
             <div id="icon">
                 <div style="width: 15%;">
@@ -72,7 +152,7 @@
             </div>
             <div id="butcontainer">
                 <div id="minbut"></div>
-                <div id="homebut"></div>
+                <div id="homebut" onclick="home()"></div>
                 <div id="backbut" onclick="back()"></div>
             </div>
         </div>

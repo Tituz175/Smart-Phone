@@ -8,14 +8,16 @@ phoneOn = () => {
         phone.setAttribute("class", "offscreen");
         document.getElementById("lockscreendetails").style.display = "none";
         document.getElementById("notification-bar").style.display = "none";
+        document.getElementById("dialpad").style.display = "none"
         document.getElementById("icon").style.display = "none";
-        document.getElementById("butcontainer").style.top = "94.5%"
+        document.getElementById("butcontainer").style.top = "95.2%"
         phoneStatus = "of"
     } else {
         phone.setAttribute("class", "lockscreen");
         document.getElementById("lockscreendetails").style.display = "flex";
         document.getElementById("notification-bar").style.display = "flex";
         document.getElementById("notification-bar").style.background = "none";
+        document.getElementById("dialpad").style.display = "none"
         document.getElementById("icon").style.display = "none";
         document.getElementById("butcontainer").style.top = "82.4%"
         phoneStatus = "on"
@@ -28,6 +30,7 @@ homeActive = () => {
         document.getElementById("lockscreendetails").style.display = "none";
         document.getElementById("notification-bar").style.background = "none";
         document.getElementById("icon").style.display = "flex";
+        document.getElementById("dialpad").style.display = "none"
         document.getElementById("butcontainer").style.top = "80%"
         homeStatus = true;
     }
@@ -38,16 +41,30 @@ dialPad = () => {
         phone.setAttribute("class", "callpad");
         document.getElementById("notification-bar").style.background = "#d4d4d4";
         document.getElementById("icon").style.display = "none"
+        document.getElementById("dialpad").style.display = "block"
+        document.getElementById("butcontainer").style.top = "03.6%"
         dialStatus = true;
     }
 }
 // this function works for back
 back = () => {
-    if(dialStatus == true) {
+    if (dialStatus == true) {
         phone.setAttribute("class", "homescreen");
         document.getElementById("notification-bar").style.background = "none";
+        document.getElementById("dialpad").style.display = "none"
         document.getElementById("icon").style.display = "flex";
-        dialStatus = false; 
+        document.getElementById("butcontainer").style.top = "80%"
+        dialStatus = false;
+    }
+}
+home = () => {
+    if (phoneStatus == "on" && homeStatus == tr) {
+        phone.setAttribute("class", "homescreen");
+        document.getElementById("notification-bar").style.background = "none";
+        document.getElementById("dialpad").style.display = "none"
+        document.getElementById("icon").style.display = "flex";
+        document.getElementById("butcontainer").style.top = "80%"
+        dialStatus = false;
     }
 }
 // this get the time on every one sec.
@@ -58,8 +75,8 @@ setInterval(() => {
     let minLen = timeMins.toString().length;
     let currentTime;
     if (minLen == "1") {
-        currentTime = timeHours + ':0' + timeMins; 
-    } else{
+        currentTime = timeHours + ':0' + timeMins;
+    } else {
         currentTime = timeHours + ':' + timeMins;
     }
     document.getElementById("time").innerHTML = currentTime;
@@ -135,7 +152,7 @@ myDate = () => {
         case 11:
             realMonth = "Dec.";
     }
-    let monthDay =realMonth + ' ' + gDate;
+    let monthDay = realMonth + ' ' + gDate;
     let week = realDay;
     document.querySelector("#date span:nth-child(1)").innerHTML = monthDay;
     document.querySelector("#date span:nth-child(2)").innerHTML = week;
