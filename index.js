@@ -1,6 +1,7 @@
 let phone = document.getElementById("phone")
 let phoneStatus;
 let homeStatus;
+let dialStatus;
 // this function power the phone
 phoneOn = () => {
     if (phoneStatus == !undefined || phoneStatus === "on") {
@@ -14,6 +15,7 @@ phoneOn = () => {
         phone.setAttribute("class", "lockscreen");
         document.getElementById("lockscreendetails").style.display = "flex";
         document.getElementById("notification-bar").style.display = "flex";
+        document.getElementById("notification-bar").style.background = "none";
         document.getElementById("icon").style.display = "none";
         document.getElementById("butcontainer").style.top = "82.4%"
         phoneStatus = "on"
@@ -24,9 +26,28 @@ homeActive = () => {
     if (phoneStatus == "on") {
         phone.setAttribute("class", "homescreen");
         document.getElementById("lockscreendetails").style.display = "none";
+        document.getElementById("notification-bar").style.background = "none";
         document.getElementById("icon").style.display = "flex";
         document.getElementById("butcontainer").style.top = "80%"
         homeStatus = true;
+    }
+}
+// this function is in charge of the dial pad
+dialPad = () => {
+    if (phoneStatus == "on") {
+        phone.setAttribute("class", "callpad");
+        document.getElementById("notification-bar").style.background = "#d4d4d4";
+        document.getElementById("icon").style.display = "none"
+        dialStatus = true;
+    }
+}
+// this function works for back
+back = () => {
+    if(dialStatus == true) {
+        phone.setAttribute("class", "homescreen");
+        document.getElementById("notification-bar").style.background = "none";
+        document.getElementById("icon").style.display = "flex";
+        dialStatus = false; 
     }
 }
 // this get the time on every one sec.
