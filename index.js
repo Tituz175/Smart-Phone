@@ -1,7 +1,9 @@
-let phone = document.getElementById("phone")
+let phone = document.getElementById("phone");
 let phoneStatus;
 let homeStatus;
 let dialStatus;
+let buttonStatus;
+let numIn;
 // this function power the phone
 phoneOn = () => {
     if (phoneStatus == !undefined || phoneStatus === "on") {
@@ -161,3 +163,44 @@ myDate = () => {
     document.querySelector("#date span:nth-child(2)").innerHTML = week;
 }
 myDate();
+// this function is in charge of the button
+buttonShow = (i) => {
+    if (buttonStatus == undefined || buttonStatus == false) {
+        document.getElementById("phone-contact").innerHTML = "";
+        numIn = document.createElement("input");
+        numIn.style.width = "100%";
+        numIn.style.textAlign = "center";
+        numIn.style.fontSize = "28px"
+        numIn.setAttribute("id", "numScreen");
+        numIn.value += i;
+        document.getElementById("phone-contact").append(numIn);
+        document.getElementById("del-icon").innerHTML= `&lArr;`;
+        document.getElementById("del-word").innerHTML= `Delete`;
+        buttonStatus = true;
+    } else {
+        numIn.value += i;
+        document.getElementById("phone-contact").append(numIn);
+        console.log("im here");
+    }
+}
+del = () => {
+    let go = document.getElementById("numScreen").value;
+    let so = go.slice(0, -1)
+    document.getElementById("numScreen").value = so;
+    if (so.length == 0) {
+        document.getElementById("phone-contact").innerHTML = "";
+        let phone = document.createElement("div");
+        let contact = document.createElement("div");
+        let text = `<span>PHONE</span>`;
+        let con = `<span>CONTACT</span>`;
+        phone.setAttribute("id","phonetab");
+        contact.setAttribute("id","contacttab");
+        phone.innerHTML = text;
+        contact.innerHTML = con;
+        document.getElementById("phone-contact").append(phone);
+        document.getElementById("phone-contact").append(contact);
+        document.getElementById("del-icon").innerHTML= `<i class="fas fa-ellipsis-h"></i>`;
+        document.getElementById("del-word").innerHTML= `More`;
+        buttonStatus = false;
+    }
+}

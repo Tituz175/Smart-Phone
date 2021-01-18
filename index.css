@@ -51,22 +51,29 @@ body{
 }
 #phone-contact{
     width: inherit;
-    height: 6vh;
+    height: 4vh;
     border: 1px solid rebeccapurple;
     box-sizing: border-box;
     display: flex;
+    font-size: 15px;
+    font-weight: 100;
+    text-align: center;
+    color: #777777;
+    background: #efefef;
 }
 #phonetab{
     width: 50%;
     border: 1px solid rosybrown;
+    align-self: center;
 }
 #contacttab{
     width: 50%;
     border: 1px solid yellow;
+    align-self: center;
 }
 #screen{
     width: inherit;
-    height: 25vh;
+    height: 27vh;
     border: 1px solid slateblue;
     box-sizing: border-box;
 }
@@ -113,7 +120,7 @@ body{
     display: flex;
     width: 60%;
     justify-content: space-between;
-    color: #fafafa;
+    color: white;
 }
 #network i{
     font-size: 12px;
@@ -309,3 +316,4 @@ body{
     border: 1px solid red;
     border-radius: 5px;
 }
+/* #4e7ea7 */
