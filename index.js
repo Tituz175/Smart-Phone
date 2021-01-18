@@ -11,7 +11,8 @@ phoneOn = () => {
         document.getElementById("dialpad").style.display = "none"
         document.getElementById("icon").style.display = "none";
         document.getElementById("butcontainer").style.top = "95.2%"
-        phoneStatus = "of"
+        phoneStatus = "off"
+        dialStatus = false;
     } else {
         phone.setAttribute("class", "lockscreen");
         document.getElementById("lockscreendetails").style.display = "flex";
@@ -21,11 +22,12 @@ phoneOn = () => {
         document.getElementById("icon").style.display = "none";
         document.getElementById("butcontainer").style.top = "82.4%"
         phoneStatus = "on"
+        dialStatus = false;
     }
 }
 // this function displays the homescreen
 homeActive = () => {
-    if (phoneStatus == "on") {
+    if (phoneStatus == "on" && (dialStatus == undefined || dialStatus == false)) {
         phone.setAttribute("class", "homescreen");
         document.getElementById("lockscreendetails").style.display = "none";
         document.getElementById("notification-bar").style.background = "none";
@@ -33,6 +35,7 @@ homeActive = () => {
         document.getElementById("dialpad").style.display = "none"
         document.getElementById("butcontainer").style.top = "80%"
         homeStatus = true;
+        dialStatus = false;
     }
 }
 // this function is in charge of the dial pad

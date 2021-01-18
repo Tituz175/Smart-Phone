@@ -1,6 +1,9 @@
 *{
     font-family: calibri;
 }
+body{
+    background: gray;
+}
 #phone{
     height: 620px;
     width: 320px;
@@ -51,6 +54,15 @@
     height: 6vh;
     border: 1px solid rebeccapurple;
     box-sizing: border-box;
+    display: flex;
+}
+#phonetab{
+    width: 50%;
+    border: 1px solid rosybrown;
+}
+#contacttab{
+    width: 50%;
+    border: 1px solid yellow;
 }
 #screen{
     width: inherit;
