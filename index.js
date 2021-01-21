@@ -95,68 +95,11 @@ myDate = () => {
     let dateDay = dateNow.getDay();
     let dateMonth = dateNow.getMonth();
     let gDate = dateNow.getDate();
+    let weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let month = ["Jan.","Feb.","Mar.","Apr.","May","Jun.","Jul.","Aug.","Sep.","Oct.","Nov.","Dec."];
+    realDay = weekDays[dateDay];
+    realMonth = month[dateMonth];
     let gYear = dateNow.getFullYear();
-    // formatting day
-    switch (dateDay) {
-        case 0:
-            realDay = "Sunday";
-            break;
-        case 1:
-            realDay = "Monday";
-            break;
-        case 2:
-            realDay = "Tuesday";
-            break;
-        case 3:
-            realDay = "Wednesday";
-            break;
-        case 4:
-            realDay = "Thursday";
-            break;
-        case 5:
-            realDay = "Friday";
-            break;
-        case 6:
-            realDay = "Saturday";
-    }
-    // formatting Month
-    switch (dateMonth) {
-        case 0:
-            realMonth = "Jan.";
-            break;
-        case 1:
-            realMonth = "Feb.";
-            break;
-        case 2:
-            realMonth = "Mar.";
-            break;
-        case 3:
-            realMonth = "Apr.";
-            break;
-        case 4:
-            realMonth = "May";
-            break;
-        case 5:
-            realMonth = "Jun.";
-            break;
-        case 6:
-            realMonth = "Jul.";
-            break;
-        case 7:
-            realMonth = "Aug.";
-            break;
-        case 8:
-            realMonth = "Sept.";
-            break;
-        case 9:
-            realMonth = "Oct.";
-            break;
-        case 10:
-            realMonth = "Nov.";
-            break;
-        case 11:
-            realMonth = "Dec.";
-    }
     let monthDay = realMonth + ' ' + gDate;
     let week = realDay;
     document.querySelector("#date span:nth-child(1)").innerHTML = monthDay;
@@ -174,11 +117,11 @@ buttonShow = (i) => {
         numIn.setAttribute("id", "numScreen");
         numIn.value += i;
         document.getElementById("phone-contact").append(numIn);
-        document.getElementById("del-icon").setAttribute("class","none");
-        document.getElementById("del-word").innerHTML= ``;
-        document.getElementById("del-icon").innerHTML= `&lArr;`;
-        document.getElementById("del-icon").style.height = "14.55px"
-        document.getElementById("del-word").innerHTML= `Delete`;
+        document.getElementById("del-icon").setAttribute("class", "none");
+        document.getElementById("del-word").innerHTML = ``;
+        document.getElementById("del-icon").innerHTML = `&lArr;`;
+        document.getElementById("del-icon").style.height = "14.55px";
+        document.getElementById("del-word").innerHTML = `Delete`;
         buttonStatus = true;
     } else {
         numIn.value += i;
@@ -196,15 +139,15 @@ del = () => {
         let contact = document.createElement("div");
         let text = `<span>PHONE</span>`;
         let con = `<span>CONTACT</span>`;
-        phone.setAttribute("id","phonetab");
-        contact.setAttribute("id","contacttab");
+        phone.setAttribute("id", "phonetab");
+        contact.setAttribute("id", "contacttab");
         phone.innerHTML = text;
         contact.innerHTML = con;
         document.getElementById("phone-contact").append(phone);
         document.getElementById("phone-contact").append(contact);
-        document.getElementById("del-icon").innerHTML= ``;
-        document.getElementById("del-icon").setAttribute("class","fas fa-ellipsis-h");
-        document.getElementById("del-word").innerHTML= `More`;
+        document.getElementById("del-icon").innerHTML = ``;
+        document.getElementById("del-icon").setAttribute("class", "fas fa-ellipsis-h");
+        document.getElementById("del-word").innerHTML = `More`;
         buttonStatus = false;
     }
 }
