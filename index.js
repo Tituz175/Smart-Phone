@@ -174,7 +174,10 @@ buttonShow = (i) => {
         numIn.setAttribute("id", "numScreen");
         numIn.value += i;
         document.getElementById("phone-contact").append(numIn);
+        document.getElementById("del-icon").setAttribute("class","none");
+        document.getElementById("del-word").innerHTML= ``;
         document.getElementById("del-icon").innerHTML= `&lArr;`;
+        document.getElementById("del-icon").style.height = "14.55px"
         document.getElementById("del-word").innerHTML= `Delete`;
         buttonStatus = true;
     } else {
@@ -185,7 +188,7 @@ buttonShow = (i) => {
 }
 del = () => {
     let go = document.getElementById("numScreen").value;
-    let so = go.slice(0, -1)
+    let so = go.slice(0, -1);
     document.getElementById("numScreen").value = so;
     if (so.length == 0) {
         document.getElementById("phone-contact").innerHTML = "";
@@ -199,7 +202,8 @@ del = () => {
         contact.innerHTML = con;
         document.getElementById("phone-contact").append(phone);
         document.getElementById("phone-contact").append(contact);
-        document.getElementById("del-icon").innerHTML= `<i class="fas fa-ellipsis-h"></i>`;
+        document.getElementById("del-icon").innerHTML= ``;
+        document.getElementById("del-icon").setAttribute("class","fas fa-ellipsis-h");
         document.getElementById("del-word").innerHTML= `More`;
         buttonStatus = false;
     }
