@@ -1,5 +1,7 @@
 *{
     font-family: calibri;
+    box-sizing: unset;
+    line-height: normal;
 }
 body{
     background: gray;
@@ -52,7 +54,7 @@ body{
 #phone-contact{
     width: inherit;
     height: 4vh;
-    border: 1px solid rebeccapurple;
+    /* border: 1px solid rebeccapurple; */
     box-sizing: border-box;
     display: flex;
     font-size: 15px;
@@ -63,18 +65,18 @@ body{
 }
 #phonetab{
     width: 50%;
-    border: 1px solid rosybrown;
+    /* border: 1px solid rosybrown; */
     align-self: center;
 }
 #contacttab{
     width: 50%;
-    border: 1px solid yellow;
+    /* border: 1px solid yellow; */
     align-self: center;
 }
 #screen{
     width: inherit;
     height: 27vh;
-    border: 1px solid slateblue;
+    /* border: 1px solid slateblue; */
     box-sizing: border-box;
 }
 #dialbut{
@@ -96,16 +98,16 @@ body{
     border: 0ch;
     outline: none;
 }
-.button-double{
+.but-double{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.buttontext1{
+.buttext1{
     font-size: 28px;
     font-weight: 200;
 }
-.buttontext2{
+.buttext2{
     font-size: 12px;
     font-weight: 100;
     margin-top: 0px;
@@ -150,6 +152,35 @@ body{
 }
 #network2 i{
     margin-left: 05px;
+}
+#balance{
+    position: absolute;
+    top: 8px;
+    width: inherit;
+    /* border: 1px solid burlywood; */
+    border-radius: 15px;
+    display: none;
+}
+#balance-negspace{
+    width: inherit;
+    height: 460px;
+    box-sizing: border-box;
+    /* border: 1px solid green; */
+    border-radius: 15px 15px 0px 0px;
+    background: rgb(0, 0, 0,0.5);
+}
+#balance-content{
+    box-sizing: border-box;
+    /* border: 1px solid blueviolet; */
+    text-align: center;
+    padding-top: 20px;
+    height: 105px;
+    color: #222222;
+    background:#fafafa;
+    /* border-radius: 0px 0px 15px 15px; */
+}
+#loader{
+    /* margin: auto; */
 }
 .net-icon{
     display: flex;

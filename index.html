@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phone</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css">
     <script src="https://kit.fontawesome.com/e2f8082b5f.js" crossorigin="anonymous"></script>
 </head>
@@ -44,51 +46,51 @@
                 </div>
                 <div id="dialbut">
                     <div id="butr1">
-                        <button class="buttontext1" onclick="buttonShow('1')">1</button>
-                        <button class="button-double">
-                            <span class="buttontext1" onclick="buttonShow('2')">2</span>
-                            <span class="buttontext2">ABC</span>
+                        <button class="buttext1" onclick="buttonShow('1')">1</button>
+                        <button class="but-double">
+                            <span class="buttext1" onclick="buttonShow('2')">2</span>
+                            <span class="buttext2">ABC</span>
                         </button>
-                        <button class="button-double">
-                            <span class="buttontext1" onclick="buttonShow('3')">3</span>
-                            <span class="buttontext2">DEF</span>
+                        <button class="but-double">
+                            <span class="buttext1" onclick="buttonShow('3')">3</span>
+                            <span class="buttext2">DEF</span>
                         </button>
                     </div>
                     <div id="butr2">
-                        <button class="button-double">
-                            <span class="buttontext1" onclick="buttonShow('4')">4</span>
-                            <span class="buttontext2">GHI</span>
+                        <button class="but-double">
+                            <span class="buttext1" onclick="buttonShow('4')">4</span>
+                            <span class="buttext2">GHI</span>
                         </button>
-                        <button class="button-double">
-                            <span class="buttontext1" onclick="buttonShow('5')">5</span>
-                            <span class="buttontext2">JKL</span>
+                        <button class="but-double">
+                            <span class="buttext1" onclick="buttonShow('5')">5</span>
+                            <span class="buttext2">JKL</span>
                         </button>
-                        <button class="button-double">
-                            <span class="buttontext1" onclick="buttonShow('6')">6</span>
-                            <span class="buttontext2">MNO</span>
+                        <button class="but-double">
+                            <span class="buttext1" onclick="buttonShow('6')">6</span>
+                            <span class="buttext2">MNO</span>
                         </button>
                     </div>
                     <div id="butr3">
-                        <button class="button-double">
-                            <span class="buttontext1" onclick="buttonShow('7')">7</span>
-                            <span class="buttontext2">PQRS</span>
+                        <button class="but-double">
+                            <span class="buttext1" onclick="buttonShow('7')">7</span>
+                            <span class="buttext2">PQRS</span>
                         </button>
-                        <button class="button-double">
-                            <span class="buttontext1" onclick="buttonShow('8')">8</span>
-                            <span class="buttontext2">TUV</span>
+                        <button class="but-double">
+                            <span class="buttext1" onclick="buttonShow('8')">8</span>
+                            <span class="buttext2">TUV</span>
                         </button>
-                        <button class="button-double">
-                            <span class="buttontext1" onclick="buttonShow('9')">9</span>
-                            <span class="buttontext2">WXYZ</span>
+                        <button class="but-double">
+                            <span class="buttext1" onclick="buttonShow('9')">9</span>
+                            <span class="buttext2">WXYZ</span>
                         </button>
                     </div>
                     <div id="butr4">
-                        <button class="buttontext1" onclick="buttonShow('*')">*</button>
-                        <button class="button-double">
-                            <span class="buttontext1" onclick="buttonShow('0')">0</span>
-                            <span class="buttontext2">+</span>
+                        <button class="buttext1" onclick="buttonShow('*')">*</button>
+                        <button class="but-double">
+                            <span class="buttext1" onclick="buttonShow('0')">0</span>
+                            <span class="buttext2">+</span>
                         </button>
-                        <button class="buttontext1" onclick="buttonShow('#')">#</button>
+                        <button class="buttext1" onclick="buttonShow('#')">#</button>
                     </div>
                 </div>
                 <div id="dialpad-network">
@@ -97,7 +99,7 @@
                         <span style="color: #373737;">Favorites</span>
                     </div>
                     <div id="network">
-                        <div id="network1">
+                        <div id="network1" onclick="balanceCheck()">
                             <i class="fas fa-phone-alt"></i>
                             <sup>1</sup>
                             <span>MTN - NG</span>
@@ -112,6 +114,15 @@
                         <i id="del-icon" class="fas fa-ellipsis-h"></i>
                         <span id="del-word" style="color: #373737;">More</span>
                     </div>
+                </div>
+            </div>
+            <div id="balance" style="color: white;">
+                <div id="balance-negspace"></div>
+                <div id="balance-content">
+                    <div id="loader" class="spinner-grow text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <p id="balance-message" style="margin-top: 10px;">USSD code running...</p>
                 </div>
             </div>
             <div id="icon">
@@ -162,6 +173,15 @@
             <div></div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
     <script src="index.js"></script>
 </body>
 
