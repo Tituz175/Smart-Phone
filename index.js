@@ -156,16 +156,39 @@ $(document).ready(function () {
             buttonStatus = false;
         }
     }
+    let balanceLoadtime;
+    let dialButtonstatus;
+    let balanceCheckstatus;
     balanceCheck = () => {
-        let inVal = $("#numScreen").val()
+        dialButtonstatus = true
+        let inVal = $("#numScreen").val();
+        $("#numScreen").val("");
+        if (balanceCheckstatus == true) {
+            $("#balance-message").html("USSD code running...");
+            $("#loader").attr("class", "spinner-grow text-primary");
+        }
         if (inVal == "*556#") {
-            phoneContactrestore()
+            phoneContactrestore();
             $("#balance").show();
         } else {
-            phoneContactrestore()
-            $("#loader").attr("class", "none")
-            $("#balance-message").html("<p>Invalid USSD code</p>")
+            balanceCheckstatus = false;
             $("#balance").show();
+            balanceLoadtime = setInterval(() => {
+                phoneContactrestore();
+                $("#loader").attr("class", "none");
+                $("#balance-message").html("<p>Invalid USSD code</p><p>OK</p>");
+                $("#balance-message").children().last().attr("onclick", "balanceOut()");
+                $("#balance").show();
+            }, 1000)
+            balanceCheckstatus = true;
         }
+        buttonStatus = false;
+    }
+    balanceOut = () => {
+        $("#balance").hide();
+        clearInterval(balanceLoadtime);
+        phoneContactrestore();
+        dialButtonstatus = false
+        buttonStatus = false;
     }
 });
