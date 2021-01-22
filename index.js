@@ -77,13 +77,22 @@ $(document).ready(function () {
     setInterval(() => {
         let timeNow = new Date();
         let timeHours = timeNow.getHours();
+        let hrLen = timeHours.toString().length;
         let timeMins = timeNow.getMinutes();
         let minLen = timeMins.toString().length;
         let currentTime;
-        if (minLen == "1") {
-            currentTime = timeHours + ':0' + timeMins;
-        } else {
-            currentTime = timeHours + ':' + timeMins;
+        if (hrLen == "1") {
+            if (minLen == "1") {
+                currentTime = "0" + timeHours + ':0' + timeMins;
+            } else {
+                currentTime = "0" + timeHours + ':' + timeMins;
+            }
+        } else{
+            if (minLen == "1") {
+                currentTime = timeHours + ':0' + timeMins;
+            } else {
+                currentTime = timeHours + ':' + timeMins;
+            }
         }
         document.getElementById("time").innerHTML = currentTime;
         document.querySelector("#notification-time").innerHTML = currentTime;
