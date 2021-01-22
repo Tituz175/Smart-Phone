@@ -131,6 +131,7 @@ $(document).ready(function () {
             document.getElementById("phone-contact").append(numIn);
         }
     }
+    // this function restores the phone and contact tab on the dial pad
     phoneContactrestore = () => {
         document.getElementById("phone-contact").innerHTML = "";
         let phone = document.createElement("div");
@@ -144,49 +145,106 @@ $(document).ready(function () {
         document.getElementById("phone-contact").append(phone);
         document.getElementById("phone-contact").append(contact);
     }
+    // this function restore the more icon on the right bottom corner of the dial pad
+    moreIconreshow = () => {
+        $("#del-icon").html("");
+        $("#del-icon").attr("class", "fas fa-ellipsis-h");
+        $("#del-word").html("More");
+    }
+    // this function is responsible for delecting numbers
     del = () => {
         let go = document.getElementById("numScreen").value;
         let so = go.slice(0, -1);
         document.getElementById("numScreen").value = so;
         if (so.length == 0) {
-            phoneContactrestore()
-            document.getElementById("del-icon").innerHTML = ``;
-            document.getElementById("del-icon").setAttribute("class", "fas fa-ellipsis-h");
-            document.getElementById("del-word").innerHTML = `More`;
+            phoneContactrestore();
+            moreIconreshow();
             buttonStatus = false;
         }
     }
-    let balanceLoadtime;
+    let errorMessage;
+    let successMessage;
     let dialButtonstatus;
     let balanceCheckstatus;
-    balanceCheck = () => {
+    let airtimeBalance = {
+        sim1: 100,
+        sim2: 100
+    }
+    let serviceProvider;
+    // this is the function that checks the balance of the user and returns the value of the balance
+    balanceCheck = (i) => {
+        serviceProvider = i
         dialButtonstatus = true
         let inVal = $("#numScreen").val();
         $("#numScreen").val("");
-        if (balanceCheckstatus == true) {
-            $("#balance-message").html("USSD code running...");
-            $("#loader").attr("class", "spinner-grow text-primary");
-        }
-        if (inVal == "*556#") {
-            phoneContactrestore();
-            $("#balance").show();
-        } else {
-            balanceCheckstatus = false;
-            $("#balance").show();
-            balanceLoadtime = setInterval(() => {
+        if (serviceProvider == "MTN - NG") {
+            if (balanceCheckstatus == true) {
+                $("#balance-message").html("USSD code running...");
+                $("#loader").attr("class", "spinner-grow text-primary");
+            }
+            if (inVal == "*556#") {
+                balanceCheckstatus = false;
                 phoneContactrestore();
-                $("#loader").attr("class", "none");
-                $("#balance-message").html("<p>Invalid USSD code</p><p>OK</p>");
-                $("#balance-message").children().last().attr("onclick", "balanceOut()");
                 $("#balance").show();
-            }, 1000)
-            balanceCheckstatus = true;
+                successMessage = setInterval(() => {
+                    $("#loader").attr("class", "none");
+                    $("#balance-message").html(`<p>BizPlus Main account:N${airtimeBalance.sim1}.00; Data Balance: 300GB. Details via SMS.</p><p>OK</p>`);
+                    $("#balance-message").children().first().css({ "text-align": "left", "margin": "0px 0px 0px 15px" });
+                    $("#balance-message").children().last().attr("onclick", "balanceOut()");
+                    $("#balance").show();
+                }, 1000)
+                balanceCheckstatus = true;
+            } else {
+                balanceCheckstatus = false;
+                $("#balance").show();
+                errorMessage = setInterval(() => {
+                    phoneContactrestore();
+                    $("#loader").attr("class", "none");
+                    $("#balance-message").html("<p>Invalid USSD code</p><p>OK</p>");
+                    $("#balance-message").children().last().attr("onclick", "balanceOut()");
+                    $("#balance").show();
+                }, 1000)
+                balanceCheckstatus = true;
+            }
+            moreIconreshow();
+        } else {
+            if (balanceCheckstatus == true) {
+                $("#balance-message").html("USSD code running...");
+                $("#loader").attr("class", "spinner-grow text-primary");
+            }
+            if (inVal == "*232#") {
+                balanceCheckstatus = false;
+                phoneContactrestore();
+                $("#balance").show();
+                successMessage = setInterval(() => {
+                    $("#loader").attr("class", "none");
+                    $("#balance-message").html(`<p>Main bal: N${airtimeBalance.sim2}.00; Dial *996# or click https://nin.9mobile.com.ng to update your NIN.</p><p>OK</p>`);
+                    $("#balance-message").children().first().css({ "word-wrap": "break-word", "text-align": "left", "margin": "0px 0px 0px 10px" });
+                    $("#balance-message").children().last().attr("onclick", "balanceOut()");
+                    $("#balance").show();
+                }, 1000)
+                balanceCheckstatus = true;
+            } else {
+                balanceCheckstatus = false;
+                $("#balance").show();
+                errorMessage = setInterval(() => {
+                    phoneContactrestore();
+                    $("#loader").attr("class", "none");
+                    $("#balance-message").html("<p>Invalid USSD code</p><p>OK</p>");
+                    $("#balance-message").children().last().attr("onclick", "balanceOut()");
+                    $("#balance").show();
+                }, 1000)
+                balanceCheckstatus = true;
+            }
+            moreIconreshow();
         }
         buttonStatus = false;
     }
+    // this function clear the displayed balance from the screen
     balanceOut = () => {
         $("#balance").hide();
-        clearInterval(balanceLoadtime);
+        clearInterval(errorMessage);
+        clearInterval(successMessage);
         phoneContactrestore();
         dialButtonstatus = false
         buttonStatus = false;
