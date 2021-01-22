@@ -10,7 +10,7 @@ body{
     height: 620px;
     width: 320px;
     border: 9px solid black;
-    margin: auto;
+    /* margin: auto; */
     border-radius: 25px;
 }
 .homescreen{
@@ -286,7 +286,9 @@ body{
     width: 10px;
     background: black;
     border-radius: 10px;
-    position: absolute;
+    /* position: absolute; */
+    margin-top: 60px;
+    margin-left: -5px;
     top: 60px;
     left: 59.2%;
 }
@@ -295,7 +297,9 @@ body{
     width: 10px;
     background: black;
     border-radius: 10px;
-    position: absolute;
+    /* position: absolute; */
+    margin-top: 170px;
+    margin-left: -10px;
     top: 170px;
     left: 59.2%;
 }
@@ -305,7 +309,8 @@ body{
     width: 25px;
     border-radius: 25px;
     background: black;
-    position: absolute;
+    /* position: absolute; */
+    margin-left:-180px ;
     top: 8px;
     left: 49.3%;
 }
@@ -345,3 +350,34 @@ body{
     border-radius: 5px;
 }
 /* #4e7ea7 */
+
+/* Airtime generator */
+#container{
+    padding: 20px 15px ;
+    width: 50%;
+}
+label,select,input{
+    display: block;
+    margin-bottom: 10px;
+}
+label{
+    font-size: 25px;
+    
+}
+input{
+    width: 97%;
+    font-size: 18px;
+}
+select{
+    width: 100%;
+    margin: auto;
+    font-size: 20px;
+}
+table thead{
+    margin: 0px;
+    color: red;
+}
+button{
+    margin-top: 10px;
+    font-size: 20px;
+}

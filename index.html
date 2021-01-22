@@ -12,7 +12,57 @@
 </head>
 
 <body>
-    <div>
+    <div style="display: flex;">
+        <!-- Airtime generator -->
+        <div style="display: flex; width: 40%; margin: 10px 0px 0px 20px; padding: 0px 0px 0px 0px; border: 1px solid red; border-radius: 10px;">
+            <div id="container">
+                <div>
+                    <label for="cardname">Card network
+                        <select name="" id="cardname">
+                            <option value="">Network</option>
+                            <option value="MTN">MTN</option>
+                            <option value="Glo">Glo</option>
+                            <option value="Etisalat">Etisalat</option>
+                            <option value="Airtel">Airtel</option>
+                        </select>
+                    </label>
+                    <label for="cardamount">Card amount
+                        <select name="" id="cardamount">
+                            <option value="">Amount</option>
+                            <option value="#1000">#1000</option>
+                            <option value="#500">#500</option>
+                            <option value="#200">#200</option>
+                            <option value="#100">#100</option>
+                        </select>
+                    </label>
+                    <label for="cardpin">Card pin
+                        <input id="cardpin" type="number">
+                    </label>
+                </div>
+                <button onclick="genCard()">
+                    Generate Card
+                </button>
+                <button onclick="showList()">
+                    Show Cards
+                </button>
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>Network</th>
+                            <th>Amount</th>
+                            <th>Pin</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablebody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Smart Phone -->
         <div id="phone" class="offscreen" ondblclick="homeActive()">
             <div id="notification-bar">
                 <span id="notification-left">
