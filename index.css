@@ -4,7 +4,18 @@
     line-height: normal;
 }
 body{
-    background: gray;
+    /* background: gray; */
+}
+#mother-container{
+    display: flex;
+}
+#airtime-generator{
+    /* display: flex;  */
+    width: 50%; 
+    /* margin: 10px 0px 0px 20px;  */
+    padding: 0px 0px 0px 0px; 
+    /* border: 1px solid red;  */
+    border-radius: 10px;
 }
 #phone{
     height: 620px;
@@ -353,31 +364,57 @@ body{
 
 /* Airtime generator */
 #container{
+    box-sizing: border-box;
     padding: 20px 15px ;
-    width: 50%;
+    width: 80%;
 }
-label,select,input{
+#card-table{
+    width: 80%;
+}
+/* label,select{
     display: block;
     margin-bottom: 10px;
+} */
+#form{
+    display: flex; 
+    flex-direction: column;
 }
 label{
-    font-size: 25px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    /* color: #; */
     
 }
-input{
-    width: 97%;
-    font-size: 18px;
-}
 select{
-    width: 100%;
-    margin: auto;
-    font-size: 20px;
+    background-color: #e9ecef!important;
+}
+select,input{
+    box-sizing: border-box;
 }
 table thead{
     margin: 0px;
-    color: red;
+    /* color: red; */
 }
-button{
+.airtime-button{
     margin-top: 10px;
     font-size: 20px;
+}
+
+@media screen and (max-width:992px) {
+    #mother-container{
+        /* border: 10px solid green; */
+        /* flex-direction: column; */
+        display: block;
+    }
+    #airtime-generator{
+        width: 100%;
+        /* border: 10px solid yellow; */
+        display: block; 
+    }
+    #container{
+        width: 100%;
+    }
+    #card-table{
+        width: 100%;
+    }
 }

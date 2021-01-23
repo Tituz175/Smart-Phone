@@ -12,13 +12,13 @@
 </head>
 
 <body>
-    <div style="display: flex;">
+    <div id="mother-container" class="container">
         <!-- Airtime generator -->
-        <div style="display: flex; width: 40%; margin: 10px 0px 0px 20px; padding: 0px 0px 0px 0px; border: 1px solid red; border-radius: 10px;">
-            <div id="container">
-                <div>
-                    <label for="cardname">Card network
-                        <select name="" id="cardname">
+        <div id="airtime-generator">
+            <div id="container" class="border rounded shadow">
+                <div id="form">
+                    <label class="" for="cardname">Card network
+                        <select class="form-control" name="" id="cardname">
                             <option value="">Network</option>
                             <option value="MTN">MTN</option>
                             <option value="Glo">Glo</option>
@@ -27,7 +27,7 @@
                         </select>
                     </label>
                     <label for="cardamount">Card amount
-                        <select name="" id="cardamount">
+                        <select class="form-control" name="" id="cardamount">
                             <option value="">Amount</option>
                             <option value="#1000">#1000</option>
                             <option value="#500">#500</option>
@@ -35,19 +35,19 @@
                             <option value="#100">#100</option>
                         </select>
                     </label>
+                    <button class="btn btn-outline-primary" onclick="genCard()">
+                        Generate Card
+                    </button>
                     <label for="cardpin">Card pin
-                        <input id="cardpin" type="number">
+                        <input class="form-control" id="cardpin" type="text" disabled>
                     </label>
                 </div>
-                <button onclick="genCard()">
-                    Generate Card
-                </button>
-                <button onclick="showList()">
+                <button class="btn btn-outline-warning w-100" style="box-sizing: border-box;" onclick="showList()">
                     Show Cards
                 </button>
             </div>
-            <div>
-                <table>
+            <div id="card-table" class="border rounded shadow mt-4">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>S/N</th>
