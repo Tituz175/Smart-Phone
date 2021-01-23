@@ -270,7 +270,7 @@ let oriTable = document.getElementById("tablebody");
 let loStore;
 let num = -1;
 
-function genCard() {
+genCard = () => {
     let cardName = document.getElementById("cardname").value;
     let cardValue = document.getElementById("cardamount").value;
     let cardPin = document.getElementById("cardpin").value;
@@ -286,7 +286,7 @@ function genCard() {
     document.getElementById("cardpin").value = "";
     loStore = JSON.parse(localStorage.getItem("cards"));
 }
-function showList() {
+showList = () => {
     oriTable.innerHTML = "";
     loStore = JSON.parse(localStorage.getItem("cards"));
     for (let i = 0; i < loStore.length; i++) {
@@ -318,7 +318,7 @@ function showList() {
     num++
     lastNum = 0;
 }
-function remove(nu) {
+remove = (nu) => {
     let out = JSON.parse(localStorage.getItem("cards"))
     out.splice(nu, 1)
     store = out
