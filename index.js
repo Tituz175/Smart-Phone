@@ -258,70 +258,78 @@ $(document).ready(function () {
         dialButtonstatus = false
         buttonStatus = false;
     }
+    // Airtime generator
+    let store = []
+    let cardName;
+    let cardValue;
+    let cardPin;
+    let cardDetails;
+    let lastNum = 0;
+    let oriTable = document.getElementById("tablebody");
+    let loStore;
+    let num = -1;
+
+    genCard = () => {
+        cardName = document.getElementById("cardname").value;
+        cardValue = document.getElementById("cardamount").value;
+        cardPin = document.getElementById("cardpin").value;
+        cardDetails = { Name: "", Amount: "", Pin: 0 };
+        cardDetails.Name = cardName;
+        cardDetails.Amount = cardValue;
+        cardDetails.Pin = cardPin;
+        store.push(cardDetails)
+        localStorage.setItem("cards", JSON.stringify(store));
+        console.log(JSON.parse(localStorage.getItem("cards")));
+        document.getElementById("cardname").value = "";
+        document.getElementById("cardamount").value = "";
+        document.getElementById("cardpin").value = "";
+        loStore = JSON.parse(localStorage.getItem("cards"));
+    }
+
+    showList = () => {
+        oriTable.innerHTML = "";
+        loStore = JSON.parse(localStorage.getItem("cards"));
+        for (let i = 0; i < loStore.length; i++) {
+            let tableRow = document.createElement("tr");
+            tableRow.setAttribute("id", `trow${i}`)
+            let sN = document.createElement("td");
+            let cardNet = document.createElement("td");
+            let cardAmt = document.createElement("td");
+            let cardPn = document.createElement("td");
+            let rowBut = document.createElement("td");
+
+            lastNum++
+            sN.append(lastNum)
+            cardNet.append(loStore[i].Name);
+            cardAmt.append(loStore[i].Amount);
+            cardPn.append(loStore[i].Pin);
+            let but = document.createElement("button")
+            but.setAttribute('onclick', `remove(${i})`)
+            but.innerHTML = "Remove"
+
+            tableRow.appendChild(sN);
+            tableRow.appendChild(cardNet);
+            tableRow.appendChild(cardAmt);
+            tableRow.appendChild(cardPn);
+            tableRow.appendChild(but);
+            oriTable.appendChild(tableRow);
+            console.table(loStore[i].Name, loStore[i].Amount, loStore[i].Pin);
+        }
+        num++
+        lastNum = 0;
+    }
+
+    remove = (nu) => {
+        let out = JSON.parse(localStorage.getItem("cards"))
+        out.splice(nu, 1)
+        store = out
+        localStorage.setItem("cards", JSON.stringify(store));
+        document.getElementById(`trow${nu}`).style.display = "none"
+    }
 });
 
-// Airtime generator
-let store = []
-let cardName;
-let cardValue;
-let cardPin;
-let lastNum = 0;
-let oriTable = document.getElementById("tablebody");
-let loStore;
-let num = -1;
 
-genCard = () => {
-    let cardName = document.getElementById("cardname").value;
-    let cardValue = document.getElementById("cardamount").value;
-    let cardPin = document.getElementById("cardpin").value;
-    let cardDetails = { Name: "", Amount: "", Pin: 0 };
-    cardDetails.Name = cardName;
-    cardDetails.Amount = cardValue;
-    cardDetails.Pin = cardPin;
-    store.push(cardDetails)
-    localStorage.setItem("cards", JSON.stringify(store));
-    console.log(JSON.parse(localStorage.getItem("cards")));
-    document.getElementById("cardname").value = "";
-    document.getElementById("cardamount").value = "";
-    document.getElementById("cardpin").value = "";
-    loStore = JSON.parse(localStorage.getItem("cards"));
-}
-showList = () => {
-    oriTable.innerHTML = "";
-    loStore = JSON.parse(localStorage.getItem("cards"));
-    for (let i = 0; i < loStore.length; i++) {
-        let tableRow = document.createElement("tr");
-        tableRow.setAttribute("id", `trow${i}`)
-        let sN = document.createElement("td");
-        let cardNet = document.createElement("td");
-        let cardAmt = document.createElement("td");
-        let cardPn = document.createElement("td");
-        let rowBut = document.createElement("td");
 
-        lastNum++
-        sN.append(lastNum)
-        cardNet.append(loStore[i].Name);
-        cardAmt.append(loStore[i].Amount);
-        cardPn.append(loStore[i].Pin);
-        let but = document.createElement("button")
-        but.setAttribute('onclick', `remove(${i})`)
-        but.innerHTML = "Remove"
 
-        tableRow.appendChild(sN);
-        tableRow.appendChild(cardNet);
-        tableRow.appendChild(cardAmt);
-        tableRow.appendChild(cardPn);
-        tableRow.appendChild(but);
-        oriTable.appendChild(tableRow);
-        console.table(loStore[i].Name, loStore[i].Amount, loStore[i].Pin);
-    }
-    num++
-    lastNum = 0;
-}
-remove = (nu) => {
-    let out = JSON.parse(localStorage.getItem("cards"))
-    out.splice(nu, 1)
-    store = out
-    localStorage.setItem("cards", JSON.stringify(store));
-    document.getElementById(`trow${nu}`).style.display = "none"
-}
+
+
