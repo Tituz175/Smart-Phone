@@ -268,22 +268,31 @@ $(document).ready(function () {
     let oriTable = document.getElementById("tablebody");
     let loStore;
     let num = -1;
+    let pinShow;
 
     genCard = () => {
         cardName = document.getElementById("cardname").value;
         cardValue = document.getElementById("cardamount").value;
-        cardPin = document.getElementById("cardpin").value;
+        cardPin = Math.ceil(Math.random() * 1000000000000000);
         cardDetails = { Name: "", Amount: "", Pin: 0 };
         cardDetails.Name = cardName;
         cardDetails.Amount = cardValue;
         cardDetails.Pin = cardPin;
         store.push(cardDetails)
         localStorage.setItem("cards", JSON.stringify(store));
-        console.log(JSON.parse(localStorage.getItem("cards")));
         document.getElementById("cardname").value = "";
         document.getElementById("cardamount").value = "";
-        document.getElementById("cardpin").value = "";
         loStore = JSON.parse(localStorage.getItem("cards"));
+        $("#generate-button").children().last().attr("class","spinner-grow text-warning");
+        pinShow = setInterval(()=>{
+            $("#generate-button").children().last().attr("class","none");
+            $("#cardpin").val(cardPin);
+        },1000)
+    }
+
+    clearPin = () =>{
+        clearInterval(pinShow);
+        $("#cardpin").val("");
     }
 
     showList = () => {
@@ -303,28 +312,33 @@ $(document).ready(function () {
             cardNet.append(loStore[i].Name);
             cardAmt.append(loStore[i].Amount);
             cardPn.append(loStore[i].Pin);
-            let but = document.createElement("button")
-            but.setAttribute('onclick', `remove(${i})`)
-            but.innerHTML = "Remove"
+            let but = document.createElement("i");
+            but.setAttribute('onclick', `remove(${i})`);
+            but.setAttribute("class", 'far fa-trash-alt');
+            but.style.color = "#dc3545";
+            rowBut.append(but);
 
             tableRow.appendChild(sN);
             tableRow.appendChild(cardNet);
             tableRow.appendChild(cardAmt);
             tableRow.appendChild(cardPn);
-            tableRow.appendChild(but);
+            tableRow.appendChild(rowBut);
             oriTable.appendChild(tableRow);
             console.table(loStore[i].Name, loStore[i].Amount, loStore[i].Pin);
         }
         num++
         lastNum = 0;
+        clearPin();
     }
 
     remove = (nu) => {
+        let index = nu;
         let out = JSON.parse(localStorage.getItem("cards"))
         out.splice(nu, 1)
         store = out
         localStorage.setItem("cards", JSON.stringify(store));
         document.getElementById(`trow${nu}`).style.display = "none"
+        showList()
     }
 });
 

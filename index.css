@@ -3,9 +3,7 @@
     box-sizing: unset;
     line-height: normal;
 }
-body{
-    /* background: gray; */
-}
+
 #mother-container{
     display: flex;
 }
@@ -366,10 +364,10 @@ body{
 #container{
     box-sizing: border-box;
     padding: 20px 15px ;
-    width: 80%;
+    width: 83%;
 }
 #card-table{
-    width: 80%;
+    width: 83%;
 }
 /* label,select{
     display: block;
@@ -385,7 +383,7 @@ label{
     /* color: #; */
     
 }
-select{
+select,input{
     background-color: #e9ecef!important;
 }
 select,input{

@@ -18,7 +18,7 @@
             <div id="container" class="border rounded shadow">
                 <div id="form">
                     <label class="" for="cardname">Card network
-                        <select class="form-control" name="" id="cardname">
+                        <select class="form-control" name="" id="cardname" onclick="clearPin()">
                             <option value="">Network</option>
                             <option value="MTN">MTN</option>
                             <option value="Glo">Glo</option>
@@ -35,8 +35,8 @@
                             <option value="#100">#100</option>
                         </select>
                     </label>
-                    <button class="btn btn-outline-primary" onclick="genCard()">
-                        Generate Card
+                    <button id="generate-button" class="btn btn-outline-primary" onclick="genCard()">
+                        Generate Card <i class=""></i>
                     </button>
                     <label for="cardpin">Card pin
                         <input class="form-control" id="cardpin" type="text" disabled>
