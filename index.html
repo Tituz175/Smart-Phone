@@ -17,7 +17,7 @@
         <div id="airtime-generator">
             <div id="container" class="border rounded shadow">
                 <div id="form">
-                    <label class="" for="cardname">Card network
+                    <label class="" for="cardname">Card Network
                         <select class="form-control" name="" id="cardname" onclick="clearPin()">
                             <option value="">Network</option>
                             <option value="MTN">MTN</option>
@@ -26,7 +26,7 @@
                             <option value="Airtel">Airtel</option>
                         </select>
                     </label>
-                    <label for="cardamount">Card amount
+                    <label for="cardamount">Card Amount
                         <select class="form-control" name="" id="cardamount">
                             <option value="">Amount</option>
                             <option value="#1000">#1000</option>
@@ -38,7 +38,7 @@
                     <button id="generate-button" class="btn btn-outline-primary" onclick="genCard()">
                         Generate Card <i class=""></i>
                     </button>
-                    <label for="cardpin">Card pin
+                    <label for="cardpin">Card Pin
                         <input class="form-control" id="cardpin" type="text" disabled>
                     </label>
                 </div>
@@ -144,7 +144,7 @@
                     </div>
                 </div>
                 <div id="dialpad-network">
-                    <div style="width: 20%;" class="net-icon">
+                    <div style="width: 20%; cursor: pointer;" class="net-icon">
                         <i class="far fa-star"></i>
                         <span style="color: #373737;">Favorites</span>
                     </div>
@@ -160,7 +160,7 @@
                             <span>Etisalat</span>
                         </div>
                     </div>
-                    <div style="width: 20%;" class="net-icon" onclick="del()">
+                    <div style="width: 20%; cursor: pointer;" class="net-icon" onclick="del()">
                         <i id="del-icon" class="fas fa-ellipsis-h"></i>
                         <span id="del-word" style="color: #373737;">More</span>
                     </div>

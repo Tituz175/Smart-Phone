@@ -194,11 +194,78 @@ $(document).ready(function () {
         sim2: 100
     }
     let serviceProvider;
+    // airtime load
+    let message;
+    let position;
+    let balanceAfter;
+    airtimeLoad = (network1stLetter, sim, messagePrefix) => {
+        loStore = JSON.parse(localStorage.getItem("cards"));
+        for (let i = 0; i < loStore.length; i++) {
+            if (loStore[i].Name[0] == network1stLetter && inVal.toString().substr(5, 15) == loStore[i].Pin.toString()) {
+                message = true;
+                position = i;
+                break
+            } else {
+                message = false;
+            }
+        }
+        if (message == true) {
+            if (loStore[position].Used == true) {
+                balanceCheckstatus = false;
+                phoneContactrestore();
+                $("#balance").show();
+                errorMessage = setInterval(() => {
+                    phoneContactrestore();
+                    $("#loader").attr("class", "none");
+                    $("#balance-message").html(`<p>${messagePrefix}, Card already used by you.</p><p>OK</p>`);
+                    $("#balance-message").children().last().attr("onclick", "balanceOut()");
+                    $("#balance-message").children().last().css("cursor", "pointer");
+                    $("#balance").show();
+                }, 1000)
+                balanceCheckstatus = true;
+            } else {
+                balanceCheckstatus = false;
+                phoneContactrestore();
+                $("#balance").show();
+                loStore[position].Used = true;
+                store = loStore;
+                localStorage.setItem("cards", JSON.stringify(store));
+                console.log(sim);
+                sim += loStore[position].Amount;
+                balanceAfter = sim
+                successMessage = setInterval(() => {
+                    $("#loader").attr("class", "none");
+                    $("#balance-message").html(`<p>${messagePrefix}, your recharge of ${loStore[position].showAmount} was successful. Details via SMS.</p><p>OK</p>`);
+                    $("#balance-message").children().first().css({ "text-align": "left", "margin": "0px 0px 0px 15px" });
+                    $("#balance-message").children().last().attr("onclick", "balanceOut()");
+                    $("#balance-message").children().last().css("cursor", "pointer");
+                    $("#balance").show();
+                }, 1000)
+                balanceCheckstatus = true;
+            }
+        } else {
+            balanceCheckstatus = false;
+            phoneContactrestore();
+            $("#balance").show();
+            errorMessage = setInterval(() => {
+                phoneContactrestore();
+                $("#loader").attr("class", "none");
+                $("#balance-message").html("<p>Invalid USSD code</p><p>OK</p>");
+                $("#balance-message").children().last().attr("onclick", "balanceOut()");
+                $("#balance-message").children().last().css("cursor", "pointer");
+                $("#balance").show();
+            }, 1000)
+            balanceCheckstatus = true;
+        }
+        moreIconreshow()
+    }
+
+    let inVal;
     // this is the function that checks the balance of the user and returns the value of the balance
     balanceCheck = (i) => {
         serviceProvider = i
         dialButtonstatus = true
-        let inVal = $("#numScreen").val();
+        inVal = $("#numScreen").val();
         $("#numScreen").val("");
         if (serviceProvider == "MTN - NG") {
             if (balanceCheckstatus == true) {
@@ -206,19 +273,8 @@ $(document).ready(function () {
                 $("#loader").attr("class", "spinner-grow text-primary");
             }
             if (inVal.length > 5) {
-                loStore = JSON.parse(localStorage.getItem("cards"));
-                let message;
-                for (let i = 0; i < loStore.length; i++) {
-                    if (loStore[i].Name[0] == "M" && inVal.toString().substr(5,15) == loStore[i].Pin.toString()) {
-                        message = "im here";
-                        console.log(inVal.toString().substr(5,15));
-                        console.log(loStore[i].Pin.toString());
-                        break
-                    } else{
-                        message = "error";
-                    }
-                }
-                console.log(message);
+                airtimeLoad("M", airtimeBalance.sim1, "Yello");
+                airtimeBalance.sim1 = balanceAfter;
             } else {
                 if (inVal == "*556#") {
                     balanceCheckstatus = false;
@@ -252,31 +308,36 @@ $(document).ready(function () {
                 $("#balance-message").html("USSD code running...");
                 $("#loader").attr("class", "spinner-grow text-primary");
             }
-            if (inVal == "*232#") {
-                balanceCheckstatus = false;
-                phoneContactrestore();
-                $("#balance").show();
-                successMessage = setInterval(() => {
-                    $("#loader").attr("class", "none");
-                    $("#balance-message").html(`<p>Main bal: N${airtimeBalance.sim2}.00; Dial *996# or click https://nin.9mobile.com.ng to update your NIN.</p><p>OK</p>`);
-                    $("#balance-message").children().first().css({ "word-wrap": "break-word", "text-align": "left", "margin": "0px 0px 0px 10px" });
-                    $("#balance-message").children().last().attr("onclick", "balanceOut()");
-                    $("#balance").show();
-                }, 1000)
-                balanceCheckstatus = true;
+            if (inVal.length > 5) {
+                airtimeLoad("E", airtimeBalance.sim2, "Dear Customer");
+                airtimeBalance.sim2 = balanceAfter;
             } else {
-                balanceCheckstatus = false;
-                $("#balance").show();
-                errorMessage = setInterval(() => {
+                if (inVal == "*232#") {
+                    balanceCheckstatus = false;
                     phoneContactrestore();
-                    $("#loader").attr("class", "none");
-                    $("#balance-message").html("<p>Invalid USSD code</p><p>OK</p>");
-                    $("#balance-message").children().last().attr("onclick", "balanceOut()");
                     $("#balance").show();
-                }, 1000)
-                balanceCheckstatus = true;
+                    successMessage = setInterval(() => {
+                        $("#loader").attr("class", "none");
+                        $("#balance-message").html(`<p>Main bal: N${airtimeBalance.sim2}.00; Dial *996# or click https://nin.9mobile.com.ng to update your NIN.</p><p>OK</p>`);
+                        $("#balance-message").children().first().css({ "word-wrap": "break-word", "text-align": "left", "margin": "0px 0px 0px 10px" });
+                        $("#balance-message").children().last().attr("onclick", "balanceOut()");
+                        $("#balance").show();
+                    }, 1000)
+                    balanceCheckstatus = true;
+                } else {
+                    balanceCheckstatus = false;
+                    $("#balance").show();
+                    errorMessage = setInterval(() => {
+                        phoneContactrestore();
+                        $("#loader").attr("class", "none");
+                        $("#balance-message").html("<p>Invalid USSD code</p><p>OK</p>");
+                        $("#balance-message").children().last().attr("onclick", "balanceOut()");
+                        $("#balance").show();
+                    }, 1000)
+                    balanceCheckstatus = true;
+                }
+                moreIconreshow();
             }
-            moreIconreshow();
         }
         buttonStatus = false;
     }
@@ -295,9 +356,10 @@ $(document).ready(function () {
         cardName = document.getElementById("cardname").value;
         cardValue = document.getElementById("cardamount").value;
         cardPin = Math.ceil(Math.random() * 1000000000000000);
-        cardDetails = { Name: "", Amount: "", Pin: 0, Used: false };
+        cardDetails = { Name: "", showAmount: "", Amount: "", Pin: 0, Used: false };
         cardDetails.Name = cardName;
-        cardDetails.Amount = cardValue;
+        cardDetails.showAmount = cardValue;
+        cardDetails.Amount = parseInt(cardValue.slice(1));
         cardDetails.Pin = cardPin;
         store.push(cardDetails)
         localStorage.setItem("cards", JSON.stringify(store));
@@ -331,7 +393,7 @@ $(document).ready(function () {
             lastNum++
             sN.append(lastNum)
             cardNet.append(loStore[i].Name);
-            cardAmt.append(loStore[i].Amount);
+            cardAmt.append(loStore[i].showAmount);
             cardPn.append(loStore[i].Pin);
             let but = document.createElement("i");
             but.setAttribute('onclick', `remove(${i})`);
@@ -345,7 +407,7 @@ $(document).ready(function () {
             tableRow.appendChild(cardPn);
             tableRow.appendChild(rowBut);
             oriTable.appendChild(tableRow);
-            console.table(loStore[i].Name, loStore[i].Amount, loStore[i].Pin);
+            console.table(loStore[i].Name, loStore[i].showAmount, loStore[i].Pin);
         }
         num++
         lastNum = 0;
