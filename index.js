@@ -1,10 +1,24 @@
 $(document).ready(function () {
+    // smart phone var
     let phone = document.getElementById("phone");
     let phoneStatus;
     let homeStatus;
     let dialStatus;
     let buttonStatus;
     let numIn;
+
+    // airtime generator var
+    let store = []
+    let cardName;
+    let cardValue;
+    let cardPin;
+    let cardDetails;
+    let lastNum = 0;
+    let oriTable = document.getElementById("tablebody");
+    let loStore;
+    let num = -1;
+    let pinShow;
+
     // this function power the phone
     phoneOn = () => {
         if (phoneStatus == !undefined || phoneStatus === "on") {
@@ -191,31 +205,48 @@ $(document).ready(function () {
                 $("#balance-message").html("USSD code running...");
                 $("#loader").attr("class", "spinner-grow text-primary");
             }
-            if (inVal == "*556#") {
-                balanceCheckstatus = false;
-                phoneContactrestore();
-                $("#balance").show();
-                successMessage = setInterval(() => {
-                    $("#loader").attr("class", "none");
-                    $("#balance-message").html(`<p>BizPlus Main account:N${airtimeBalance.sim1}.00; Data Balance: 300GB. Details via SMS.</p><p>OK</p>`);
-                    $("#balance-message").children().first().css({ "text-align": "left", "margin": "0px 0px 0px 15px" });
-                    $("#balance-message").children().last().attr("onclick", "balanceOut()");
-                    $("#balance").show();
-                }, 1000)
-                balanceCheckstatus = true;
+            if (inVal.length > 5) {
+                loStore = JSON.parse(localStorage.getItem("cards"));
+                let message;
+                for (let i = 0; i < loStore.length; i++) {
+                    if (loStore[i].Name[0] == "M" && inVal.toString().substr(5,15) == loStore[i].Pin.toString()) {
+                        message = "im here";
+                        console.log(inVal.toString().substr(5,15));
+                        console.log(loStore[i].Pin.toString());
+                        break
+                    } else{
+                        message = "error";
+                    }
+                }
+                console.log(message);
             } else {
-                balanceCheckstatus = false;
-                $("#balance").show();
-                errorMessage = setInterval(() => {
+                if (inVal == "*556#") {
+                    balanceCheckstatus = false;
                     phoneContactrestore();
-                    $("#loader").attr("class", "none");
-                    $("#balance-message").html("<p>Invalid USSD code</p><p>OK</p>");
-                    $("#balance-message").children().last().attr("onclick", "balanceOut()");
                     $("#balance").show();
-                }, 1000)
-                balanceCheckstatus = true;
+                    successMessage = setInterval(() => {
+                        $("#loader").attr("class", "none");
+                        $("#balance-message").html(`<p>BizPlus Main account:N${airtimeBalance.sim1}.00; Data Balance: 300GB. Details via SMS.</p><p>OK</p>`);
+                        $("#balance-message").children().first().css({ "text-align": "left", "margin": "0px 0px 0px 15px" });
+                        $("#balance-message").children().last().attr("onclick", "balanceOut()");
+                        $("#balance").show();
+                    }, 1000)
+                    balanceCheckstatus = true;
+                } else {
+                    balanceCheckstatus = false;
+                    $("#balance").show();
+                    errorMessage = setInterval(() => {
+                        phoneContactrestore();
+                        $("#loader").attr("class", "none");
+                        $("#balance-message").html("<p>Invalid USSD code</p><p>OK</p>");
+                        $("#balance-message").children().last().attr("onclick", "balanceOut()");
+                        $("#balance").show();
+                    }, 1000)
+                    balanceCheckstatus = true;
+                }
+                moreIconreshow();
             }
-            moreIconreshow();
+
         } else {
             if (balanceCheckstatus == true) {
                 $("#balance-message").html("USSD code running...");
@@ -258,23 +289,13 @@ $(document).ready(function () {
         dialButtonstatus = false
         buttonStatus = false;
     }
-    // Airtime generator
-    let store = []
-    let cardName;
-    let cardValue;
-    let cardPin;
-    let cardDetails;
-    let lastNum = 0;
-    let oriTable = document.getElementById("tablebody");
-    let loStore;
-    let num = -1;
-    let pinShow;
 
+    // Airtime generator
     genCard = () => {
         cardName = document.getElementById("cardname").value;
         cardValue = document.getElementById("cardamount").value;
         cardPin = Math.ceil(Math.random() * 1000000000000000);
-        cardDetails = { Name: "", Amount: "", Pin: 0 };
+        cardDetails = { Name: "", Amount: "", Pin: 0, Used: false };
         cardDetails.Name = cardName;
         cardDetails.Amount = cardValue;
         cardDetails.Pin = cardPin;
@@ -283,14 +304,14 @@ $(document).ready(function () {
         document.getElementById("cardname").value = "";
         document.getElementById("cardamount").value = "";
         loStore = JSON.parse(localStorage.getItem("cards"));
-        $("#generate-button").children().last().attr("class","spinner-grow text-warning");
-        pinShow = setInterval(()=>{
-            $("#generate-button").children().last().attr("class","none");
+        $("#generate-button").children().last().attr("class", "spinner-grow text-warning");
+        pinShow = setInterval(() => {
+            $("#generate-button").children().last().attr("class", "none");
             $("#cardpin").val(cardPin);
-        },1000)
+        }, 1000)
     }
 
-    clearPin = () =>{
+    clearPin = () => {
         clearInterval(pinShow);
         $("#cardpin").val("");
     }
