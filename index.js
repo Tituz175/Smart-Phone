@@ -371,14 +371,21 @@ $(document).ready(function () {
             $("#generate-button").children().last().attr("class", "none");
             $("#cardpin").val(cardPin);
         }, 1000)
+        $("#cardpin").fadeIn(2000);
+        $("#showCardbut").fadeIn(2000);
+        $("#cardpinlabel").fadeIn(2000);
     }
 
     clearPin = () => {
         clearInterval(pinShow);
+        $("#cardpin").fadeOut();
+        // $("#showCardbut").fadeOut();
+        $("#cardpinlabel").fadeOut();
         $("#cardpin").val("");
     }
 
     showList = () => {
+        $("#tablebody").hide();
         oriTable.innerHTML = "";
         loStore = JSON.parse(localStorage.getItem("cards"));
         for (let i = 0; i < loStore.length; i++) {
@@ -409,6 +416,7 @@ $(document).ready(function () {
             oriTable.appendChild(tableRow);
             console.table(loStore[i].Name, loStore[i].showAmount, loStore[i].Pin);
         }
+        $("#tablebody").fadeIn(1000);
         num++
         lastNum = 0;
         clearPin();

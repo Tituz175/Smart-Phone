@@ -9,6 +9,14 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css">
     <script src="https://kit.fontawesome.com/e2f8082b5f.js" crossorigin="anonymous"></script>
+    <style>
+        #cardpin,
+        #showCardbut,
+        #cardpinlabel,
+        #tablebody {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -38,11 +46,12 @@
                     <button id="generate-button" class="btn btn-outline-primary" onclick="genCard()">
                         Generate Card <i class=""></i>
                     </button>
-                    <label for="cardpin">Card Pin
+                    <label id="cardpinlabel" for="cardpin">Card Pin
                         <input class="form-control" id="cardpin" type="text" disabled>
                     </label>
                 </div>
-                <button class="btn btn-outline-warning w-100" style="box-sizing: border-box;" onclick="showList()">
+                <button id="showCardbut" class="btn btn-outline-warning w-100 mt-1"
+                    style="box-sizing: border-box; display:none;" onclick="showList()">
                     Show Cards
                 </button>
             </div>
@@ -92,7 +101,20 @@
                     <div id="contacttab"><span>CONTACTS</span></div>
                 </div>
                 <div id="screen">
-
+                    <div id="screenNav" class="text-warning pl-3 pr-3 pt-1 pb-1 border-bottom">
+                        <div>All calls</div>
+                        <div>Switch</div>
+                    </div>
+                    <div id="screenLogs" class="border pl-3 pr-3 pt-1 pb-1">
+                        <div>
+                            <p>name</p>
+                            <span>number</span>
+                            <span>sim</span>
+                            <span>duration</span>
+                            <span>time</span>
+                        </div>
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
                 </div>
                 <div id="dialbut">
                     <div id="butr1">
@@ -223,9 +245,9 @@
             <div></div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
+    <!-- <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
