@@ -62,7 +62,7 @@
 }
 #phone-contact{
     width: inherit;
-    height: 4vh;
+    height: 2rem;
     box-sizing: border-box;
     display: flex;
     font-size: 15px;
@@ -83,7 +83,7 @@
 }
 #screen{
     width: inherit;
-    height: 27vh;
+    height: 15rem;
     box-sizing: border-box;
 }
 #screenNav{
