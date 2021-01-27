@@ -27,7 +27,7 @@ $(document).ready(function () {
             document.getElementById("notification-bar").style.display = "none";
             document.getElementById("dialpad").style.display = "none"
             document.getElementById("icon").style.display = "none";
-            document.getElementById("butcontainer").style.top = "95.2%"
+            document.getElementById("butcontainer").style.top = "36.9rem"
             phoneStatus = "off"
             dialStatus = false;
         } else {
@@ -37,7 +37,7 @@ $(document).ready(function () {
             document.getElementById("notification-bar").style.background = "none";
             document.getElementById("dialpad").style.display = "none"
             document.getElementById("icon").style.display = "none";
-            document.getElementById("butcontainer").style.top = "82.4%"
+            document.getElementById("butcontainer").style.top = "32.1rem";
             phoneStatus = "on"
             dialStatus = false;
         }
@@ -50,7 +50,7 @@ $(document).ready(function () {
             document.getElementById("notification-bar").style.background = "none";
             document.getElementById("icon").style.display = "flex";
             document.getElementById("dialpad").style.display = "none"
-            document.getElementById("butcontainer").style.top = "80%"
+            document.getElementById("butcontainer").style.top = "31rem"
             homeStatus = true;
             dialStatus = false;
         }
@@ -62,7 +62,7 @@ $(document).ready(function () {
             document.getElementById("notification-bar").style.background = "#d4d4d4";
             document.getElementById("icon").style.display = "none"
             document.getElementById("dialpad").style.display = "block"
-            document.getElementById("butcontainer").style.top = "03.6%"
+            document.getElementById("butcontainer").style.top = "1rem"
             dialStatus = true;
         }
     }
@@ -73,7 +73,7 @@ $(document).ready(function () {
             document.getElementById("notification-bar").style.background = "none";
             document.getElementById("dialpad").style.display = "none"
             document.getElementById("icon").style.display = "flex";
-            document.getElementById("butcontainer").style.top = "80%"
+            document.getElementById("butcontainer").style.top = "31rem"
             dialStatus = false;
         }
     }
@@ -83,7 +83,7 @@ $(document).ready(function () {
             document.getElementById("notification-bar").style.background = "none";
             document.getElementById("dialpad").style.display = "none"
             document.getElementById("icon").style.display = "flex";
-            document.getElementById("butcontainer").style.top = "80%"
+            document.getElementById("butcontainer").style.top = "31rem"
             dialStatus = false;
         }
     }
@@ -430,6 +430,9 @@ $(document).ready(function () {
         localStorage.setItem("cards", JSON.stringify(store));
         document.getElementById(`trow${nu}`).style.display = "none"
         showList()
+        if (store.length == 0) {
+            $("#showCardbut").fadeOut();
+        }
     }
 });
 
