@@ -20,10 +20,188 @@
 </head>
 
 <body>
+    <!-- <div id="test">
+
+    </div> -->
     <div id="mother-container" class="container">
+        <!-- Smart Phone -->
+        <div id="phone-container">
+            <div id="phone" class="offscreen" onclick="homeActive()">
+                <div id="notification-bar">
+                    <span id="notification-left">
+                        <i class="fab fa-facebook-square"></i>
+                        <i class="fab fa-facebook-square"></i>
+                        <i class="fab fa-whatsapp"></i>
+                        <i class="fab fa-twitter"></i>
+                        <!-- <i class="far fa-envelope"></i> -->
+                        <i class="far fa-envelope"></i>
+                        <i class="fas fa-headphones-alt"></i>
+                    </span>
+                    <span id="notification-right">
+                        <sup style="font-size: 8px;"><span>4G</span></sup>
+                        <i style="font-size: 9px;" class="fas fa-signal"></i>
+                        <sub><span style="font-size: 7px;">1</span></sub>
+                        <sup style="font-size: 8px;"><span>H</span></sup>
+                        <i style="font-size: 9px;" class="fas fa-signal"></i>
+                        <sub><span style="font-size: 7px;">2</span></sub>
+                        <i class="fas fa-battery"></i>
+                        <!-- <i></i> -->
+                        <span id="notification-time" style="margin-left: 06px;"></span>
+                    </span>
+                </div>
+                <div id="dialpad">
+                    <div id="phone-contact">
+                        <div id="phonetab"><span>PHONE</span></div>
+                        <div id="contacttab"><span>CONTACTS</span></div>
+                    </div>
+                    <div id="screen">
+                        <div id="screenNav" class="text-warning pl-3 pr-3 pt-1 pb-1 border-bottom">
+                            <div>All calls</div>
+                            <div>Switch</div>
+                        </div>
+                        <div id="screenLogs" class="border pl-3 pr-3 pt-1 pb-1">
+                            <div>
+                                <p>name</p>
+                                <span>number</span>
+                                <span>sim</span>
+                                <span>duration</span>
+                                <span>time</span>
+                            </div>
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                    </div>
+                    <div id="dialbut">
+                        <div id="butr1">
+                            <button class="buttext1" onclick="buttonShow('1')">1</button>
+                            <button class="but-double">
+                                <span class="buttext1" onclick="buttonShow('2')">2</span>
+                                <span class="buttext2">ABC</span>
+                            </button>
+                            <button class="but-double">
+                                <span class="buttext1" onclick="buttonShow('3')">3</span>
+                                <span class="buttext2">DEF</span>
+                            </button>
+                        </div>
+                        <div id="butr2">
+                            <button class="but-double">
+                                <span class="buttext1" onclick="buttonShow('4')">4</span>
+                                <span class="buttext2">GHI</span>
+                            </button>
+                            <button class="but-double">
+                                <span class="buttext1" onclick="buttonShow('5')">5</span>
+                                <span class="buttext2">JKL</span>
+                            </button>
+                            <button class="but-double">
+                                <span class="buttext1" onclick="buttonShow('6')">6</span>
+                                <span class="buttext2">MNO</span>
+                            </button>
+                        </div>
+                        <div id="butr3">
+                            <button class="but-double">
+                                <span class="buttext1" onclick="buttonShow('7')">7</span>
+                                <span class="buttext2">PQRS</span>
+                            </button>
+                            <button class="but-double">
+                                <span class="buttext1" onclick="buttonShow('8')">8</span>
+                                <span class="buttext2">TUV</span>
+                            </button>
+                            <button class="but-double">
+                                <span class="buttext1" onclick="buttonShow('9')">9</span>
+                                <span class="buttext2">WXYZ</span>
+                            </button>
+                        </div>
+                        <div id="butr4">
+                            <button class="buttext1" onclick="buttonShow('*')">*</button>
+                            <button class="but-double">
+                                <span class="buttext1" onclick="buttonShow('0')">0</span>
+                                <span class="buttext2">+</span>
+                            </button>
+                            <button class="buttext1" onclick="buttonShow('#')">#</button>
+                        </div>
+                    </div>
+                    <div id="dialpad-network">
+                        <div style="width: 20%; cursor: pointer;" class="net-icon">
+                            <i class="far fa-star"></i>
+                            <span style="color: #373737;">Favorites</span>
+                        </div>
+                        <div id="network">
+                            <div id="network1" onclick="balanceCheck('MTN - NG')">
+                                <i class="fas fa-phone-alt"></i>
+                                <sup>1</sup>
+                                <span>MTN - NG</span>
+                            </div>
+                            <div id="network2" onclick="balanceCheck('Etisalat')">
+                                <i class="fas fa-phone-alt"></i>
+                                <sup>2</sup>
+                                <span>Etisalat</span>
+                            </div>
+                        </div>
+                        <div style="width: 20%; cursor: pointer;" class="net-icon" onclick="del()">
+                            <i id="del-icon" class="fas fa-ellipsis-h"></i>
+                            <span id="del-word" style="color: #373737;">More</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="balance" style="color: white;">
+                    <div id="balance-negspace"></div>
+                    <div id="balance-content">
+                        <div id="loader" class="spinner-grow text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <p id="balance-message" style="margin-top: 10px;">USSD code running...</p>
+                    </div>
+                </div>
+                <div id="icon">
+                    <div style="width: 15%;">
+                        <div id="call" onclick="dialPad()"></div>
+                        <span style="margin: 0px 0px 0px 7px;">Phone</span>
+                    </div>
+                    <div style="width: 15%;">
+                        <div id="contacts"></div>
+                        <span style="margin: 0px 0px 0px 1px;">contacts</span>
+                    </div>
+                    <div style="width: 15%;">
+                        <div id="whatsapp"></div>
+                        <span style="margin: 0px 0px 0px 0px;">whatsapp</span>
+                    </div>
+                    <div style="width: 15%;">
+                        <div id="messenger"></div>
+                        <span style="margin: 0px 0px 0px 9px;">BFF</span><span
+                            style="color: #a54169;text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.733);font-size: 11px;">❤</span>
+                    </div>
+                </div>
+                <div id="lockscreendetails">
+                    <div id="time-date">
+                        <div>
+                            <span id="time"></span>
+                        </div>
+                        <div id="date">
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div id="bar">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <div id="camera">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                </div>
+                <div id="butcontainer">
+                    <div id="minbut"></div>
+                    <div id="homebut" onclick="home()"></div>
+                    <div id="backbut" onclick="back()"></div>
+                </div>
+            </div>
+            <div id="volume"></div>
+            <div id="power" onclick="phoneOn()"></div>
+            <div id="cam">
+                <div></div>
+            </div>
+        </div>
         <!-- Airtime generator -->
         <div id="airtime-generator">
-            <div id="container" class="border rounded shadow">
+            <div id="airtime-container" class="border rounded shadow">
                 <div id="form">
                     <label class="" for="cardname">Card Network
                         <select class="form-control" name="" id="cardname" onclick="clearPin()">
@@ -70,179 +248,6 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-        <!-- Smart Phone -->
-        <div id="phone" class="offscreen" onclick="homeActive()">
-            <div id="notification-bar">
-                <span id="notification-left">
-                    <i class="fab fa-facebook-square"></i>
-                    <i class="fab fa-facebook-square"></i>
-                    <i class="fab fa-whatsapp"></i>
-                    <i class="fab fa-twitter"></i>
-                    <!-- <i class="far fa-envelope"></i> -->
-                    <i class="far fa-envelope"></i>
-                    <i class="fas fa-headphones-alt"></i>
-                </span>
-                <span id="notification-right">
-                    <sup style="font-size: 8px;"><span>4G</span></sup>
-                    <i style="font-size: 9px;" class="fas fa-signal"></i>
-                    <sub><span style="font-size: 7px;">1</span></sub>
-                    <sup style="font-size: 8px;"><span>H</span></sup>
-                    <i style="font-size: 9px;" class="fas fa-signal"></i>
-                    <sub><span style="font-size: 7px;">2</span></sub>
-                    <i class="fas fa-battery"></i>
-                    <!-- <i></i> -->
-                    <span id="notification-time" style="margin-left: 06px;"></span>
-                </span>
-            </div>
-            <div id="dialpad">
-                <div id="phone-contact">
-                    <div id="phonetab"><span>PHONE</span></div>
-                    <div id="contacttab"><span>CONTACTS</span></div>
-                </div>
-                <div id="screen">
-                    <div id="screenNav" class="text-warning pl-3 pr-3 pt-1 pb-1 border-bottom">
-                        <div>All calls</div>
-                        <div>Switch</div>
-                    </div>
-                    <div id="screenLogs" class="border pl-3 pr-3 pt-1 pb-1">
-                        <div>
-                            <p>name</p>
-                            <span>number</span>
-                            <span>sim</span>
-                            <span>duration</span>
-                            <span>time</span>
-                        </div>
-                        <i class="fas fa-phone-alt"></i>
-                    </div>
-                </div>
-                <div id="dialbut">
-                    <div id="butr1">
-                        <button class="buttext1" onclick="buttonShow('1')">1</button>
-                        <button class="but-double">
-                            <span class="buttext1" onclick="buttonShow('2')">2</span>
-                            <span class="buttext2">ABC</span>
-                        </button>
-                        <button class="but-double">
-                            <span class="buttext1" onclick="buttonShow('3')">3</span>
-                            <span class="buttext2">DEF</span>
-                        </button>
-                    </div>
-                    <div id="butr2">
-                        <button class="but-double">
-                            <span class="buttext1" onclick="buttonShow('4')">4</span>
-                            <span class="buttext2">GHI</span>
-                        </button>
-                        <button class="but-double">
-                            <span class="buttext1" onclick="buttonShow('5')">5</span>
-                            <span class="buttext2">JKL</span>
-                        </button>
-                        <button class="but-double">
-                            <span class="buttext1" onclick="buttonShow('6')">6</span>
-                            <span class="buttext2">MNO</span>
-                        </button>
-                    </div>
-                    <div id="butr3">
-                        <button class="but-double">
-                            <span class="buttext1" onclick="buttonShow('7')">7</span>
-                            <span class="buttext2">PQRS</span>
-                        </button>
-                        <button class="but-double">
-                            <span class="buttext1" onclick="buttonShow('8')">8</span>
-                            <span class="buttext2">TUV</span>
-                        </button>
-                        <button class="but-double">
-                            <span class="buttext1" onclick="buttonShow('9')">9</span>
-                            <span class="buttext2">WXYZ</span>
-                        </button>
-                    </div>
-                    <div id="butr4">
-                        <button class="buttext1" onclick="buttonShow('*')">*</button>
-                        <button class="but-double">
-                            <span class="buttext1" onclick="buttonShow('0')">0</span>
-                            <span class="buttext2">+</span>
-                        </button>
-                        <button class="buttext1" onclick="buttonShow('#')">#</button>
-                    </div>
-                </div>
-                <div id="dialpad-network">
-                    <div style="width: 20%; cursor: pointer;" class="net-icon">
-                        <i class="far fa-star"></i>
-                        <span style="color: #373737;">Favorites</span>
-                    </div>
-                    <div id="network">
-                        <div id="network1" onclick="balanceCheck('MTN - NG')">
-                            <i class="fas fa-phone-alt"></i>
-                            <sup>1</sup>
-                            <span>MTN - NG</span>
-                        </div>
-                        <div id="network2" onclick="balanceCheck('Etisalat')">
-                            <i class="fas fa-phone-alt"></i>
-                            <sup>2</sup>
-                            <span>Etisalat</span>
-                        </div>
-                    </div>
-                    <div style="width: 20%; cursor: pointer;" class="net-icon" onclick="del()">
-                        <i id="del-icon" class="fas fa-ellipsis-h"></i>
-                        <span id="del-word" style="color: #373737;">More</span>
-                    </div>
-                </div>
-            </div>
-            <div id="balance" style="color: white;">
-                <div id="balance-negspace"></div>
-                <div id="balance-content">
-                    <div id="loader" class="spinner-grow text-primary" role="status">
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                    <p id="balance-message" style="margin-top: 10px;">USSD code running...</p>
-                </div>
-            </div>
-            <div id="icon">
-                <div style="width: 15%;">
-                    <div id="call" onclick="dialPad()"></div>
-                    <span style="margin: 0px 0px 0px 7px;">Phone</span>
-                </div>
-                <div style="width: 15%;">
-                    <div id="contacts"></div>
-                    <span style="margin: 0px 0px 0px 1px;">contacts</span>
-                </div>
-                <div style="width: 15%;">
-                    <div id="whatsapp"></div>
-                    <span style="margin: 0px 0px 0px 0px;">whatsapp</span>
-                </div>
-                <div style="width: 15%;">
-                    <div id="messenger"></div>
-                    <span style="margin: 0px 0px 0px 9px;">BFF</span><span
-                        style="color: #a54169;text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.733);font-size: 11px;">❤</span>
-                </div>
-            </div>
-            <div id="lockscreendetails">
-                <div id="time-date">
-                    <div>
-                        <span id="time"></span>
-                    </div>
-                    <div id="date">
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-                <div id="bar">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <div id="camera">
-                    <i class="fas fa-camera"></i>
-                </div>
-            </div>
-            <div id="butcontainer">
-                <div id="minbut"></div>
-                <div id="homebut" onclick="home()"></div>
-                <div id="backbut" onclick="back()"></div>
-            </div>
-        </div>
-        <div id="volume"></div>
-        <div id="power" onclick="phoneOn()"></div>
-        <div id="cam">
-            <div></div>
         </div>
     </div>
     <!-- <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"

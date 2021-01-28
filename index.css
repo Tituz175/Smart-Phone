@@ -15,6 +15,10 @@
     /* border: 1px solid red;  */
     border-radius: 10px;
 }
+#phone-container{
+    width: 50%;
+    display: flex;
+}
 #phone{
     height: 620px;
     width: 320px;
@@ -381,7 +385,7 @@
 /* #4e7ea7 */
 
 /* Airtime generator */
-#container{
+#airtime-container{
     box-sizing: border-box;
     padding: 20px 15px ;
     width: 83%;
@@ -417,16 +421,25 @@ table thead{
 
 @media screen and (max-width:992px) {
     #mother-container{
-        /* border: 10px solid green; */
-        /* flex-direction: column; */
         display: block;
+    }
+    #phone-container{
+        width: 100%;
+        display: block;
+    }
+    #phone{
+        height: 620px;
+        width: 320px;
+        border: 9px solid black;
+        border-radius: 25px;
     }
     #airtime-generator{
         width: 100%;
-        /* border: 10px solid yellow; */
         display: block; 
+        margin-top: 650px;
+
     }
-    #container{
+    #airtime-container{
         width: 100%;
     }
     #card-table{
@@ -446,5 +459,8 @@ table thead{
         border-radius: 25px;
         margin-top: -15.2rem;
         margin-left: 9.8rem;
+    }
+    #tablebody{
+        font-size: 12px;
     }
 }
